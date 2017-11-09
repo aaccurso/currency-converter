@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import AmountInput from 'components/AmountInput';
 import CurrencySelector from 'components/CurrencySelector';
@@ -19,11 +20,17 @@ class MoneyInput extends React.Component {
   render() {
     return (
       <View style={style.moneyInput}>
-        <CurrencySelector currencies={this.props.currencies}/>
+        <CurrencySelector {...this.props}/>
         <AmountInput placeholder={'Input some amount'}/>
       </View>
     );
   }
 }
+
+MoneyInput.propTypes = {
+  currencies: PropTypes.array,
+  selectedCurrency: PropTypes.string,
+  onSelectCurrency: PropTypes.func
+};
 
 export default MoneyInput;

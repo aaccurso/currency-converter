@@ -6,8 +6,13 @@ import OpenExchangeRates from 'services/OpenExchangeRates';
 
 export default class App extends React.Component {
   state = {
+    fromCurrency: 'USD',
+    toCurrency: 'ARS',
     currencies: []
   };
+
+  onSelectFromCurrency = fromCurrency => this.setState({ fromCurrency });
+  onSelectToCurrency = toCurrency => this.setState({ toCurrency });
 
   componentDidMount() {
     OpenExchangeRates.getCurrencies()
@@ -23,8 +28,16 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Title>Currency Converter</Title>
-        <MoneyInput currencies={this.state.currencies}/>
-        <MoneyInput currencies={this.state.currencies}/>
+        <MoneyInput
+          selectedCurrency={this.state.fromCurrency}
+          currencies={this.state.currencies}
+          onSelectCurrency={this.onSelectFromCurrency}
+        />
+        <MoneyInput
+          selectedCurrency={this.state.toCurrency}
+          currencies={this.state.currencies}
+          onSelectCurrency={this.onSelectToCurrency}
+        />
       </View>
     );
   }
