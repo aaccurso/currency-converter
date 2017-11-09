@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import AmountInput from './src/components/AmountInput';
+import MoneyInput from 'components/MoneyInput';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Text>Currency Converter</Text>
-        <AmountInput/>
+        <MoneyInput/>
       </View>
     );
   }

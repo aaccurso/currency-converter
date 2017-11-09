@@ -4,14 +4,18 @@ import { StyleSheet, TextInput } from 'react-native';
 const styles = StyleSheet.create({
   amountInput: {
     height: 40,
+    width: 200,
     alignSelf: 'stretch',
     borderColor: 'gray',
-    borderWidth: 1
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingLeft: 10,
+    paddingRight: 10
   }
 });
 
 class AmountInput extends React.Component {
-  state = { amount: '0' };
+  state = { amount: '' };
 
   onChangeAmount = amount => this.setState({amount});
 
@@ -23,7 +27,6 @@ class AmountInput extends React.Component {
         onChangeText={this.onChangeAmount}
         keyboardType={'numeric'}
         value={this.state.amount}
-        selectTextOnFocus={true}
         returnKeyType={'done'}
       />
     );
