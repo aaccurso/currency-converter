@@ -4,12 +4,13 @@ import { View, Modal, Button, FlatList } from 'react-native';
 class CurrencySelector extends React.Component {
   state = {
     modalVisible: false,
+    selectedCurrency: 'USD',
     currencies: []
   };
 
   showModal = () => this.setState({ modalVisible: true });
 
-  hideModal = () => this.setState({ modalVisible: false });
+  selectCurrency = currency => this.setState({ modalVisible: false, selectedCurrency: currency });
 
   componentWillReceiveProps({currencies}) {
     this.setState({
@@ -21,7 +22,7 @@ class CurrencySelector extends React.Component {
     return (
       <View>
         <Button
-          title={'USD'}
+          title={this.state.selectedCurrency}
           accessibilityLabel={'Currency Selector'}
           onPress={this.showModal}
         />
@@ -29,7 +30,7 @@ class CurrencySelector extends React.Component {
           <View>
             <FlatList
               data={this.state.currencies}
-              renderItem={({item}) => <Button title={item.key} onPress={this.hideModal}/>}
+              renderItem={({item}) => <Button title={item.key} onPress={this.selectCurrency.bind(this, item.key)}/>}
             />
           </View>
         </Modal>
