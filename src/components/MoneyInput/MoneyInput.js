@@ -19,7 +19,7 @@ class MoneyInput extends React.Component {
   render() {
     return (
       <View style={style.moneyInput}>
-        <CurrencySelector/>
+        <CurrencySelector currencies={this.props.currencies}/>
         <AmountInput placeholder={'Input some amount'}/>
       </View>
     );
