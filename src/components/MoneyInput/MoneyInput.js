@@ -6,10 +6,12 @@ import CurrencySelector from 'components/CurrencySelector';
 const style = StyleSheet.create({
   moneyInput: {
     flex: 1,
-    maxHeight: 40,
+    maxHeight: 50,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 5,
+    marginBottom: 5
   }
 });
 
