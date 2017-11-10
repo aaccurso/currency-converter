@@ -32,8 +32,16 @@ class CurrencySelector extends React.Component {
   };
 
   componentWillReceiveProps({currencies}) {
+    const currencyCodes = Object.keys(currencies);
+    const mappedCurrencies = currencyCodes.map(currencyCode => (
+      {
+        key: currencyCode,
+        currencyLabel: `${currencies[currencyCode]} (${currencyCode})`
+      }
+    ));
+
     this.setState({
-      currencies: currencies.map(currency => ({ key: currency }))
+      currencies: mappedCurrencies
     });
   }
 
@@ -62,7 +70,7 @@ class CurrencySelector extends React.Component {
                 ({item}) => (
                   <Button
                     {...this.currencyButtonProps}
-                    title={item.key}
+                    title={item.currencyLabel}
                     onPress={this.onSelectCurrency.bind(this, item.key)}
                   />
                 )
@@ -76,7 +84,7 @@ class CurrencySelector extends React.Component {
 }
 
 CurrencySelector.propTypes = {
-  currencies: PropTypes.array,
+  currencies: PropTypes.object,
   selectedCurrency: PropTypes.string,
   onSelectCurrency: PropTypes.func
 };

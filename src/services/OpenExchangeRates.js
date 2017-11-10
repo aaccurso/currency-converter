@@ -4,6 +4,14 @@ let rates = {};
 
 const OpenExchangeRates = {
   /**
+   * Fetch current currencies
+   * @return {Promise.<Array>}
+   */
+  getCurrencies() {
+    return fetch('https://openexchangerates.org/api/currencies.json')
+      .then(response => response.json());
+  },
+  /**
    * Fetch current rates from Open Exchange Rates API
    * @return {Promise.<Array>}
    */

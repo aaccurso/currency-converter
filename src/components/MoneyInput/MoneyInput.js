@@ -29,7 +29,7 @@ class MoneyInput extends React.Component {
 
 MoneyInput.propTypes = {
   amount: PropTypes.string,
-  currencies: PropTypes.array,
+  currencies: PropTypes.object,
   selectedCurrency: PropTypes.string,
   onSelectCurrency: PropTypes.func,
   onAmountChange: PropTypes.func,

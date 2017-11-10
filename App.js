@@ -10,7 +10,7 @@ export default class App extends React.Component {
     fromAmount: '',
     toCurrency: 'ARS',
     toAmount: '',
-    currencies: []
+    currencies: {}
   };
 
   onSelectFromCurrency = fromCurrency => this.setState({ fromCurrency }, this.onSubmit);
@@ -23,13 +23,14 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    OpenExchangeRates.getRates()
-      .then(currencies => Object.keys(currencies))
-      .then(currencies => {
-        this.setState({
-          currencies
-        });
-      });
+    const getRatesPromise = OpenExchangeRates.getRates();
+    const getCurrenciesPromise = OpenExchangeRates.getCurrencies();
+
+    Promise.all([
+        getCurrenciesPromise,
+        getRatesPromise
+      ])
+      .then(([currencies]) => this.setState({ currencies }));
   }
 
   render() {
