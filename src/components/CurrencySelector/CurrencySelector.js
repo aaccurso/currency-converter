@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Modal, Button, FlatList } from 'react-native';
+import { Platform, StyleSheet, View, Modal, Button, FlatList } from 'react-native';
 
 const style = StyleSheet.create({
   modalContainer: {
@@ -12,6 +12,14 @@ class CurrencySelector extends React.Component {
   state = {
     modalVisible: false,
     currencies: []
+  };
+
+  currencyButtonProps = {
+    ...Platform.select({
+      android: {
+        color: 'gray'
+      }
+    })
   };
 
   showModal = () => this.setState({ modalVisible: true });
@@ -37,7 +45,10 @@ class CurrencySelector extends React.Component {
           accessibilityLabel={'Open Currency Selector'}
           onPress={this.showModal}
         />
-        <Modal visible={this.state.modalVisible}>
+        <Modal
+          visible={this.state.modalVisible}
+          onRequestClose={this.closeModal}
+        >
           <View style={style.modalContainer}>
             <Button
               color={'red'}
@@ -47,7 +58,15 @@ class CurrencySelector extends React.Component {
             />
             <FlatList
               data={this.state.currencies}
-              renderItem={({item}) => <Button title={item.key} onPress={this.onSelectCurrency.bind(this, item.key)}/>}
+              renderItem={
+                ({item}) => (
+                  <Button
+                    {...this.currencyButtonProps}
+                    title={item.key}
+                    onPress={this.onSelectCurrency.bind(this, item.key)}
+                  />
+                )
+              }
             />
           </View>
         </Modal>

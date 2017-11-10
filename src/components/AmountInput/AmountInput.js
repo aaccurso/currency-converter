@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, TextInput } from 'react-native';
+import { Platform, StyleSheet, TextInput } from 'react-native';
 
 const styles = StyleSheet.create({
   amountInput: {
     height: 40,
     width: 200,
-    borderColor: 'gray',
-    borderWidth: 1,
-    borderRadius: 10,
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
+    ...Platform.select({
+      ios: {
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 10
+      }
+    })
   }
 });
 
