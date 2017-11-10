@@ -1,11 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleSheet, TextInput } from 'react-native';
 
 const styles = StyleSheet.create({
   amountInput: {
     height: 40,
     width: 200,
-    alignSelf: 'stretch',
     borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 10,
@@ -15,22 +15,24 @@ const styles = StyleSheet.create({
 });
 
 class AmountInput extends React.Component {
-  state = { amount: '' };
-
-  onChangeAmount = amount => this.setState({amount});
-
   render() {
     return (
       <TextInput
         {...this.props}
         style={styles.amountInput}
-        onChangeText={this.onChangeAmount}
+        onChangeText={this.props.onAmountChange}
+        value={this.props.amount}
         keyboardType={'numeric'}
-        value={this.state.amount}
         returnKeyType={'done'}
       />
     );
   }
 }
+
+AmountInput.propTypes = {
+  amount: PropTypes.string,
+  onAmountChange: PropTypes.func,
+  onSubmitAmount: PropTypes.func
+};
 
 export default AmountInput;

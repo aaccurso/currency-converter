@@ -21,16 +21,19 @@ class MoneyInput extends React.Component {
     return (
       <View style={style.moneyInput}>
         <CurrencySelector {...this.props}/>
-        <AmountInput placeholder={'Input some amount'}/>
+        <AmountInput {...this.props}/>
       </View>
     );
   }
 }
 
 MoneyInput.propTypes = {
+  amount: PropTypes.string,
   currencies: PropTypes.array,
   selectedCurrency: PropTypes.string,
-  onSelectCurrency: PropTypes.func
+  onSelectCurrency: PropTypes.func,
+  onAmountChange: PropTypes.func,
+  onSubmitAmount: PropTypes.func
 };
 
 export default MoneyInput;
