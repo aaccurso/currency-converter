@@ -4,6 +4,7 @@ import { StyleSheet, Text } from 'react-native';
 const style = StyleSheet.create({
   title: {
     fontSize: 50,
+    width: 250,
     paddingBottom: 40,
     textAlign: 'center'
   }
