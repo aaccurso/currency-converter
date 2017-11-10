@@ -8,6 +8,7 @@ const OpenExchangeRates = {
       .then(response => response.json())
       .then(data => {
         rates = data.rates;
+
         return rates;
       });
   },

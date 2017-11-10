@@ -13,12 +13,13 @@ export default class App extends React.Component {
     currencies: []
   };
 
-  onSelectFromCurrency = fromCurrency => this.setState({ fromCurrency });
-  onSelectToCurrency = toCurrency => this.setState({ toCurrency });
+  onSelectFromCurrency = fromCurrency => this.setState({ fromCurrency }, this.onSubmit);
+  onSelectToCurrency = toCurrency => this.setState({ toCurrency }, this.onSubmit);
   onFromAmountChange = fromAmount => this.setState({ fromAmount });
-  onSubmitFromAmount = () => {
-      const toAmount = OpenExchangeRates.convert(this.state).toString();
-      this.setState({ toAmount });
+  onSubmit = () => {
+    if(!this.state.fromAmount) return;
+    const toAmount = OpenExchangeRates.convert(this.state).toString();
+    this.setState({ toAmount });
   };
 
   componentDidMount() {
@@ -42,7 +43,7 @@ export default class App extends React.Component {
           onSelectCurrency={this.onSelectFromCurrency}
           onAmountChange={this.onFromAmountChange}
           placeholder={'Input some amount'}
-          onSubmitAmount={this.onSubmitFromAmount}
+          onSubmitAmount={this.onSubmit}
         />
         <MoneyInput
           amount={this.state.toAmount}
