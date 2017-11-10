@@ -7,22 +7,21 @@ const OpenExchangeRates = {
    * Fetch current currencies
    * @return {Promise.<Array>}
    */
-  getCurrencies() {
-    return fetch('https://openexchangerates.org/api/currencies.json')
-      .then(response => response.json());
+  async getCurrencies() {
+    const response = await fetch('https://openexchangerates.org/api/currencies.json');
+    return await response.json();
   },
   /**
    * Fetch current rates from Open Exchange Rates API
    * @return {Promise.<Array>}
    */
-  getRates() {
-    return fetch(`https://openexchangerates.org/api/latest.json?app_id=${appId}`)
-      .then(response => response.json())
-      .then(data => {
-        rates = data.rates;
+  async getRates() {
+    const response = await fetch(`https://openexchangerates.org/api/latest.json?app_id=${appId}`);
+    const data = await response.json();
 
-        return rates;
-      });
+    rates = data.rates;
+
+    return rates;
   },
   /**
    * Convert amount using current rate between currencies
