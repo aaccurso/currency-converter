@@ -1,8 +1,17 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 import Title from 'components/Title';
 import MoneyInput from 'components/MoneyInput';
 import OpenExchangeRates from 'services/OpenExchangeRates';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+});
 
 export default class App extends React.Component {
   state = {
@@ -20,6 +29,12 @@ export default class App extends React.Component {
     if (!this.state.fromAmount) return;
     const toAmount = OpenExchangeRates.convert(this.state);
     this.setState({ toAmount });
+  };
+  reverseCurrencies = () => {
+    this.setState({
+      toCurrency: this.state.fromCurrency,
+      fromCurrency: this.state.toCurrency
+    }, this.onSubmit);
   };
 
   componentDidMount() {
@@ -53,16 +68,11 @@ export default class App extends React.Component {
           onSelectCurrency={this.onSelectToCurrency}
           editable={false}
         />
+        <Button
+          title={'Reverse currencies'}
+          onPress={this.reverseCurrencies}
+        />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
