@@ -16,7 +16,10 @@ export default class App extends React.Component {
   onSelectFromCurrency = fromCurrency => this.setState({ fromCurrency });
   onSelectToCurrency = toCurrency => this.setState({ toCurrency });
   onFromAmountChange = fromAmount => this.setState({ fromAmount });
-  onToAmountChange = toAmount => this.setState({ toAmount });
+  onSubmitFromAmount = () => {
+      const toAmount = OpenExchangeRates.convert(this.state).toString();
+      this.setState({ toAmount });
+  };
 
   componentDidMount() {
     OpenExchangeRates.getRates()
@@ -39,13 +42,13 @@ export default class App extends React.Component {
           onSelectCurrency={this.onSelectFromCurrency}
           onAmountChange={this.onFromAmountChange}
           placeholder={'Input some amount'}
+          onSubmitAmount={this.onSubmitFromAmount}
         />
         <MoneyInput
           amount={this.state.toAmount}
           selectedCurrency={this.state.toCurrency}
           currencies={this.state.currencies}
           onSelectCurrency={this.onSelectToCurrency}
-          onAmountChange={this.onToAmountChange}
           editable={false}
         />
       </View>

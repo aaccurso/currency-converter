@@ -24,6 +24,7 @@ class AmountInput extends React.Component {
         value={this.props.amount}
         keyboardType={'numeric'}
         returnKeyType={'done'}
+        onSubmitEditing={this.props.onSubmitAmount}
       />
     );
   }
