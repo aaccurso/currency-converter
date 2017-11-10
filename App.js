@@ -26,7 +26,7 @@ export default class App extends React.Component {
   onSelectToCurrency = toCurrency => this.setState({ toCurrency }, this.onSubmit);
   onFromAmountChange = fromAmount => this.setState({ fromAmount });
   onSubmit = () => {
-    if (!this.state.fromAmount) return;
+    if (!this.state.fromAmount) return this.setState({ toAmount: '' });
     const toAmount = OpenExchangeRates.convert(this.state);
     this.setState({ toAmount });
   };
