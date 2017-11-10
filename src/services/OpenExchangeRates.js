@@ -1,3 +1,5 @@
+import { AsyncStorage } from 'react-native';
+
 const appId = 'ddc1d8d11f674d95b26b646f36b461da';
 const base = 'USD';
 let rates = {};
@@ -8,20 +10,34 @@ const OpenExchangeRates = {
    * @return {Promise.<Array>}
    */
   async getCurrencies() {
-    const response = await fetch('https://openexchangerates.org/api/currencies.json');
-    return await response.json();
+    try {
+      const response = await fetch('https://openexchangerates.org/api/currencies.json');
+      const currencies = await response.json();
+      await AsyncStorage.setItem('currencies', JSON.stringify(currencies));
+      return currencies;
+    } catch (error) {
+      console.log('Error: getCurrencies', error.message);
+      const currencies = await AsyncStorage.getItem('currencies');
+      return JSON.parse(currencies);
+    }
   },
   /**
    * Fetch current rates from Open Exchange Rates API
-   * @return {Promise.<Array>}
+   * @return {Promise.<Object>}
    */
   async getRates() {
-    const response = await fetch(`https://openexchangerates.org/api/latest.json?app_id=${appId}`);
-    const data = await response.json();
-
-    rates = data.rates;
-
-    return rates;
+    try {
+      const response = await fetch(`https://openexchangerates.org/api/latest.json?app_id=${appId}`);
+      const data = await response.json();
+      rates = data.rates;
+      await AsyncStorage.setItem('rates', JSON.stringify(rates));
+      return rates;
+    } catch (error) {
+      console.log('Error: getRates', error.message);
+      const ratesString = await AsyncStorage.getItem('rates');
+      rates = JSON.parse(ratesString);
+      return rates;
+    }
   },
   /**
    * Convert amount using current rate between currencies
