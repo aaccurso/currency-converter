@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Platform, StyleSheet, View, Modal, Button, FlatList } from 'react-native';
+import TextButton from 'components/TextButton';
 
 const style = StyleSheet.create({
   modalContainer: {
@@ -18,6 +19,9 @@ class CurrencySelector extends React.Component {
     ...Platform.select({
       android: {
         color: 'gray'
+      },
+      ios: {
+        color: 'blue'
       }
     })
   };
@@ -36,7 +40,7 @@ class CurrencySelector extends React.Component {
     const mappedCurrencies = currencyCodes.map(currencyCode => (
       {
         key: currencyCode,
-        currencyLabel: `${currencies[currencyCode]} (${currencyCode})`
+        currencyLabel: `${currencyCode} – ${currencies[currencyCode]}`
       }
     ));
 
@@ -58,7 +62,7 @@ class CurrencySelector extends React.Component {
           onRequestClose={this.closeModal}
         >
           <View style={style.modalContainer}>
-            <Button
+            <TextButton
               color={'red'}
               title={'Close'}
               accessibilityLabel={'Close Currency Selector'}
@@ -68,7 +72,7 @@ class CurrencySelector extends React.Component {
               data={this.state.currencies}
               renderItem={
                 ({item}) => (
-                  <Button
+                  <TextButton
                     {...this.currencyButtonProps}
                     title={item.currencyLabel}
                     onPress={this.onSelectCurrency.bind(this, item.key)}
