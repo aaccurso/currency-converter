@@ -63,6 +63,7 @@ class CurrencySelector extends React.Component {
                                 <TextButton
                                     title={item.currencyLabel}
                                     onPress={this.handleSelectCurrency.bind(this, item.key)}
+                                    underlined={this.props.selectedCurrency === item.key}
                                 />
                             )}
                         />
