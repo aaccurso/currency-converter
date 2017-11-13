@@ -5,7 +5,8 @@ import TextButton from 'components/TextButton';
 
 const styles = StyleSheet.create({
     modalContainer: {
-        marginTop: 20
+        flex: 1,
+        paddingTop: 20
     }
 });
 
