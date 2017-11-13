@@ -15,7 +15,8 @@
         "android": "react-native-scripts android",
         "ios": "react-native-scripts ios",
         "test": "node node_modules/jest/bin/jest.js --watch",
-        "eslint-all": "eslint '**/*.{js,jsx}'"
+        "eslint-all": "eslint '**/*.{js,jsx}'",
+        "prettier-all": "prettier --write '**/*.{js,jsx,json}'"
     },
     "lint-staged": {
         "*.{js,jsx}": "eslint",
