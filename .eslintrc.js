@@ -1,9 +1,14 @@
 module.exports = {
     env: {
-        'jest/globals': true
+        'jest/globals': true,
+        browser: true
     },
-    plugins: ['jest'],
-    extends: ['react', 'react-native'],
+    globals: {
+        Promise: false
+    },
+    parser: 'babel-eslint',
+    plugins: ['react', 'react-native', 'jest'],
+    extends: ['eslint:recommended', 'plugin:react-native/all', 'plugin:react/recommended'],
     rules: {
         'import/no-extraneous-dependencies': 0,
         'import/no-unresolved': 0,
