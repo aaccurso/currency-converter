@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import Title from 'components/Title';
 import MoneyInput from 'components/MoneyInput';
 import OpenExchangeRates from 'services/OpenExchangeRates';
@@ -53,7 +53,7 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
                 <Title>Currency Converter</Title>
                 <MoneyInput
                     amount={this.state.fromAmount}
@@ -76,7 +76,7 @@ export default class App extends React.Component {
                     onPress={this.handleReverseCurrencies}
                     underlined
                 />
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

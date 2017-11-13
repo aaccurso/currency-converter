@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Modal, Button, FlatList } from 'react-native';
+import { StyleSheet, Platform, View, Modal, Button, FlatList } from 'react-native';
 import TextButton from 'components/TextButton';
 
 const styles = StyleSheet.create({
     modalContainer: {
         flex: 1,
-        paddingTop: 20
+        ...Platform.select({
+            ios: {
+                paddingTop: 20
+            }
+        })
     }
 });
 
