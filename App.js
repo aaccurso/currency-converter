@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, KeyboardAvoidingView, View } from 'react-native';
-import Title from 'components/Title';
+import { StyleSheet, KeyboardAvoidingView, View, Image } from 'react-native';
 import MoneyInput from 'components/MoneyInput';
 import OpenExchangeRates from 'services/OpenExchangeRates';
 import TextButton from 'components/TextButton';
@@ -57,7 +56,7 @@ export default class App extends React.Component {
     render() {
         return (
             <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
-                <Title>Currency Converter</Title>
+                <Image source={require('./assets/exchange.png')} />
                 <View style={styles.formContainer}>
                     <MoneyInput
                         amount={this.state.fromAmount}
@@ -73,6 +72,7 @@ export default class App extends React.Component {
                         selectedCurrency={this.state.toCurrency}
                         currencies={this.state.currencies}
                         onSelectCurrency={this.handleSelectToCurrency}
+                        placeholder={'Conversion result'}
                         editable={false}
                     />
                     <TextButton

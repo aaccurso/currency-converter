@@ -1,5 +1,8 @@
 {
     "expo": {
-        "sdkVersion": "22.0.0"
+        "name": "Currency Converter",
+        "slug": "currency-converter",
+        "sdkVersion": "22.0.0",
+        "icon": "./assets/exchange@3x.png"
     }
 }
