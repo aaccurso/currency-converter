@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Platform, StyleSheet, View, Modal, Button, FlatList } from 'react-native';
+import { StyleSheet, View, Modal, Button, FlatList } from 'react-native';
 import TextButton from 'components/TextButton';
 
 const style = StyleSheet.create({
@@ -13,17 +13,6 @@ class CurrencySelector extends React.Component {
   state = {
     modalVisible: false,
     currencies: []
-  };
-
-  currencyButtonProps = {
-    ...Platform.select({
-      android: {
-        color: 'gray'
-      },
-      ios: {
-        color: 'blue'
-      }
-    })
   };
 
   showModal = () => this.setState({ modalVisible: true });
@@ -73,7 +62,6 @@ class CurrencySelector extends React.Component {
               renderItem={
                 ({item}) => (
                   <TextButton
-                    {...this.currencyButtonProps}
                     title={item.currencyLabel}
                     onPress={this.onSelectCurrency.bind(this, item.key)}
                   />

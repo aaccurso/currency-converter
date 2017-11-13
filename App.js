@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Title from 'components/Title';
 import MoneyInput from 'components/MoneyInput';
 import OpenExchangeRates from 'services/OpenExchangeRates';
+import TextButton from 'components/TextButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,9 +69,10 @@ export default class App extends React.Component {
           onSelectCurrency={this.onSelectToCurrency}
           editable={false}
         />
-        <Button
+        <TextButton
           title={'Reverse currencies'}
           onPress={this.reverseCurrencies}
+          underlined={true}
         />
       </View>
     );
