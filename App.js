@@ -47,7 +47,9 @@ export default class App extends React.Component {
         this.setState(
             {
                 toCurrency: this.state.fromCurrency,
-                fromCurrency: this.state.toCurrency
+                fromCurrency: this.state.toCurrency,
+                toAmount: this.state.fromAmount,
+                fromAmount: this.state.toAmount
             },
             this.handleSubmit
         );
