@@ -1,1 +1,2 @@
-export const iOSDefaultButtonColor = '#0A5BF3';
+export const iOSDefaultButtonColor = '#0a5bf3';
+export const white = '#fff';

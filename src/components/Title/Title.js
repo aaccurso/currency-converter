@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
+import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   title: {
@@ -10,14 +11,14 @@ const styles = StyleSheet.create({
   }
 });
 
-class Title extends React.Component {
-  render() {
-    return (
-      <Text style={styles.title}>
-        {this.props.children}
-      </Text>
-    );
-  }
-}
+const Title = props => (
+  <Text style={styles.title}>
+    {props.children}
+  </Text>
+);
+
+Title.propTypes = {
+  children: PropTypes.string.isRequired
+};
 
 export default Title;

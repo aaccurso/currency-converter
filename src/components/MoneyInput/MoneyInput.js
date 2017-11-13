@@ -16,16 +16,12 @@ const styles = StyleSheet.create({
   }
 });
 
-class MoneyInput extends React.Component {
-  render() {
-    return (
-      <View style={styles.moneyInput}>
-        <CurrencySelector {...this.props}/>
-        <AmountInput {...this.props}/>
-      </View>
-    );
-  }
-}
+const MoneyInput = props => (
+  <View style={styles.moneyInput}>
+    <CurrencySelector {...props}/>
+    <AmountInput {...props}/>
+  </View>
+);
 
 MoneyInput.propTypes = {
   amount: PropTypes.string,

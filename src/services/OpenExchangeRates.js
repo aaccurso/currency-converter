@@ -16,7 +16,7 @@ const OpenExchangeRates = {
       await AsyncStorage.setItem('currencies', JSON.stringify(currencies));
       return currencies;
     } catch (error) {
-      console.log('Error: getCurrencies', error.message);
+      console.log('Error: getCurrencies', error.message); // eslint-disable-line no-console
       const currencies = await AsyncStorage.getItem('currencies');
       return JSON.parse(currencies);
     }
@@ -33,7 +33,7 @@ const OpenExchangeRates = {
       await AsyncStorage.setItem('rates', JSON.stringify(rates));
       return rates;
     } catch (error) {
-      console.log('Error: getRates', error.message);
+      console.log('Error: getRates', error.message); // eslint-disable-line no-console
       const ratesString = await AsyncStorage.getItem('rates');
       rates = JSON.parse(ratesString);
       return rates;
@@ -62,7 +62,7 @@ const OpenExchangeRates = {
     rates[base] = 1;
 
     // Throw an error if either rate isn't in the rates array
-    if (!rates[toCurrency] || !rates[fromCurrency]) throw "From and to missing";
+    if (!rates[toCurrency] || !rates[fromCurrency]) throw new Error("From and to missing");
 
     // If `from` currency === fx.base, return the basic exchange rate for the `to` currency
     if (fromCurrency === base) {

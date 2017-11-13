@@ -4,40 +4,18 @@ import Title from 'components/Title';
 import MoneyInput from 'components/MoneyInput';
 import OpenExchangeRates from 'services/OpenExchangeRates';
 import TextButton from 'components/TextButton';
+import { white } from 'constants/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'center'
   }
 });
 
 export default class App extends React.Component {
-  state = {
-    fromCurrency: 'USD',
-    fromAmount: '',
-    toCurrency: 'ARS',
-    toAmount: '',
-    currencies: {}
-  };
-
-  onSelectFromCurrency = fromCurrency => this.setState({ fromCurrency }, this.onSubmit);
-  onSelectToCurrency = toCurrency => this.setState({ toCurrency }, this.onSubmit);
-  onFromAmountChange = fromAmount => this.setState({ fromAmount });
-  onSubmit = () => {
-    if (!this.state.fromAmount) return this.setState({ toAmount: '' });
-    const toAmount = OpenExchangeRates.convert(this.state);
-    this.setState({ toAmount });
-  };
-  reverseCurrencies = () => {
-    this.setState({
-      toCurrency: this.state.fromCurrency,
-      fromCurrency: this.state.toCurrency
-    }, this.onSubmit);
-  };
-
   componentDidMount() {
     const getRatesPromise = OpenExchangeRates.getRates();
     const getCurrenciesPromise = OpenExchangeRates.getCurrencies();
@@ -49,6 +27,29 @@ export default class App extends React.Component {
       .then(([currencies]) => this.setState({ currencies }));
   }
 
+  state = {
+    fromCurrency: 'USD',
+    fromAmount: '',
+    toCurrency: 'ARS',
+    toAmount: '',
+    currencies: {}
+  };
+
+  handleSelectFromCurrency = fromCurrency => this.setState({ fromCurrency }, this.handleSubmit);
+  handleSelectToCurrency = toCurrency => this.setState({ toCurrency }, this.handleSubmit);
+  handleFromAmountChange = fromAmount => this.setState({ fromAmount });
+  handleSubmit = () => {
+    if (!this.state.fromAmount) return this.setState({ toAmount: '' });
+    const toAmount = OpenExchangeRates.convert(this.state);
+    this.setState({ toAmount });
+  };
+  handleReverseCurrencies = () => {
+    this.setState({
+      toCurrency: this.state.fromCurrency,
+      fromCurrency: this.state.toCurrency
+    }, this.handleSubmit);
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -57,22 +58,22 @@ export default class App extends React.Component {
           amount={this.state.fromAmount}
           selectedCurrency={this.state.fromCurrency}
           currencies={this.state.currencies}
-          onSelectCurrency={this.onSelectFromCurrency}
-          onAmountChange={this.onFromAmountChange}
+          onSelectCurrency={this.handleSelectFromCurrency}
+          onAmountChange={this.handleFromAmountChange}
           placeholder={'Input some amount'}
-          onSubmitAmount={this.onSubmit}
+          onSubmitAmount={this.handleSubmit}
         />
         <MoneyInput
           amount={this.state.toAmount}
           selectedCurrency={this.state.toCurrency}
           currencies={this.state.currencies}
-          onSelectCurrency={this.onSelectToCurrency}
+          onSelectCurrency={this.handleSelectToCurrency}
           editable={false}
         />
         <TextButton
           title={'Reverse currencies'}
-          onPress={this.reverseCurrencies}
-          underlined={true}
+          onPress={this.handleReverseCurrencies}
+          underlined
         />
       </View>
     );

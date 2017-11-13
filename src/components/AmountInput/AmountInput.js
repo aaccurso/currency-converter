@@ -18,21 +18,17 @@ const styles = StyleSheet.create({
   }
 });
 
-class AmountInput extends React.Component {
-  render() {
-    return (
-      <TextInput
-        {...this.props}
-        style={styles.amountInput}
-        onChangeText={this.props.onAmountChange}
-        value={this.props.amount}
-        keyboardType={'numeric'}
-        returnKeyType={'done'}
-        onSubmitEditing={this.props.onSubmitAmount}
-      />
-    );
-  }
-}
+const AmountInput = props => (
+  <TextInput
+    {...props}
+    style={styles.amountInput}
+    onChangeText={props.onAmountChange}
+    value={props.amount}
+    keyboardType={'numeric'}
+    returnKeyType={'done'}
+    onSubmitEditing={props.onSubmitAmount}
+  />
+);
 
 AmountInput.propTypes = {
   amount: PropTypes.string,

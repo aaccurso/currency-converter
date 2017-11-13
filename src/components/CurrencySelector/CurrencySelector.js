@@ -10,20 +10,6 @@ const styles = StyleSheet.create({
 });
 
 class CurrencySelector extends React.Component {
-  state = {
-    modalVisible: false,
-    currencies: []
-  };
-
-  showModal = () => this.setState({ modalVisible: true });
-
-  closeModal = () => this.setState({ modalVisible: false });
-
-  onSelectCurrency = currency => {
-    this.closeModal();
-    this.props.onSelectCurrency(currency);
-  };
-
   componentWillReceiveProps({currencies}) {
     const currencyCodes = Object.keys(currencies);
     const mappedCurrencies = currencyCodes.map(currencyCode => (
@@ -38,24 +24,38 @@ class CurrencySelector extends React.Component {
     });
   }
 
+  state = {
+    modalVisible: false,
+    currencies: []
+  };
+
+  handleShowModal = () => this.setState({ modalVisible: true });
+
+  handleCloseModal = () => this.setState({ modalVisible: false });
+
+  handleSelectCurrency = currency => {
+    this.handleCloseModal();
+    this.props.onSelectCurrency(currency);
+  };
+
   render() {
     return (
       <View>
         <Button
           title={this.props.selectedCurrency}
           accessibilityLabel={'Open Currency Selector'}
-          onPress={this.showModal}
+          onPress={this.handleShowModal}
         />
         <Modal
           visible={this.state.modalVisible}
-          onRequestClose={this.closeModal}
+          onRequestClose={this.handleCloseModal}
         >
           <View style={styles.modalContainer}>
             <TextButton
               color={'red'}
               title={'Close'}
               accessibilityLabel={'Close Currency Selector'}
-              onPress={this.closeModal}
+              onPress={this.handleCloseModal}
             />
             <FlatList
               data={this.state.currencies}
@@ -63,7 +63,7 @@ class CurrencySelector extends React.Component {
                 ({item}) => (
                   <TextButton
                     title={item.currencyLabel}
-                    onPress={this.onSelectCurrency.bind(this, item.key)}
+                    onPress={this.handleSelectCurrency.bind(this, item.key)}
                   />
                 )
               }

@@ -11,29 +11,27 @@ const styles = StyleSheet.create({
   }
 });
 
-class TextButton extends React.PureComponent {
-  render() {
-    const textButtonStyle = StyleSheet.flatten([
-      styles.textButton,
-      {
-        color: this.props.color,
-        textDecorationLine: this.props.underlined ? 'underline' : 'none'
-      }
-    ]);
+const TextButton = props => {
+  const textButtonStyle = StyleSheet.flatten([
+    styles.textButton,
+    {
+      color: props.color,
+      textDecorationLine: props.underlined ? 'underline' : 'none'
+    }
+  ]);
 
-    return (
-      <TouchableOpacity
-        accessible={true}
-        accessibilityLabel={this.props.accessibilityLabel || this.props.title}
-        onPress={this.props.onPress}
-      >
-        <Text style={textButtonStyle}>
-          {this.props.title}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
-}
+  return (
+    <TouchableOpacity
+      accessible
+      accessibilityLabel={props.accessibilityLabel || props.title}
+      onPress={props.onPress}
+    >
+      <Text style={textButtonStyle}>
+        {props.title}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 TextButton.propTypes = {
   title: PropTypes.string.isRequired,
