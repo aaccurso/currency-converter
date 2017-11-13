@@ -56,7 +56,7 @@ export default class App extends React.Component {
     render() {
         return (
             <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
-                <Image source={require('./assets/exchange.png')} />
+                <Image source={require('assets/exchange.png')} />
                 <View style={styles.formContainer}>
                     <MoneyInput
                         amount={this.state.fromAmount}
@@ -74,6 +74,7 @@ export default class App extends React.Component {
                         onSelectCurrency={this.handleSelectToCurrency}
                         placeholder={'Conversion result'}
                         editable={false}
+                        withClipboard
                     />
                     <TextButton
                         title={'Reverse currencies'}
