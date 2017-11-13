@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, View } from 'react-native';
 import Title from 'components/Title';
 import MoneyInput from 'components/MoneyInput';
 import OpenExchangeRates from 'services/OpenExchangeRates';
@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
         backgroundColor: white,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    formContainer: {
+        backgroundColor: white
     }
 });
 
@@ -55,27 +58,29 @@ export default class App extends React.Component {
         return (
             <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
                 <Title>Currency Converter</Title>
-                <MoneyInput
-                    amount={this.state.fromAmount}
-                    selectedCurrency={this.state.fromCurrency}
-                    currencies={this.state.currencies}
-                    onSelectCurrency={this.handleSelectFromCurrency}
-                    onAmountChange={this.handleFromAmountChange}
-                    placeholder={'Input some amount'}
-                    onSubmitAmount={this.handleSubmit}
-                />
-                <MoneyInput
-                    amount={this.state.toAmount}
-                    selectedCurrency={this.state.toCurrency}
-                    currencies={this.state.currencies}
-                    onSelectCurrency={this.handleSelectToCurrency}
-                    editable={false}
-                />
-                <TextButton
-                    title={'Reverse currencies'}
-                    onPress={this.handleReverseCurrencies}
-                    underlined
-                />
+                <View style={styles.formContainer}>
+                    <MoneyInput
+                        amount={this.state.fromAmount}
+                        selectedCurrency={this.state.fromCurrency}
+                        currencies={this.state.currencies}
+                        onSelectCurrency={this.handleSelectFromCurrency}
+                        onAmountChange={this.handleFromAmountChange}
+                        placeholder={'Input some amount'}
+                        onSubmitAmount={this.handleSubmit}
+                    />
+                    <MoneyInput
+                        amount={this.state.toAmount}
+                        selectedCurrency={this.state.toCurrency}
+                        currencies={this.state.currencies}
+                        onSelectCurrency={this.handleSelectToCurrency}
+                        editable={false}
+                    />
+                    <TextButton
+                        title={'Reverse currencies'}
+                        onPress={this.handleReverseCurrencies}
+                        underlined
+                    />
+                </View>
             </KeyboardAvoidingView>
         );
     }

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
             ios: {
                 borderColor: 'gray',
                 borderWidth: 1,
-                borderRadius: 10
+                borderRadius: 5
             }
         })
     }
