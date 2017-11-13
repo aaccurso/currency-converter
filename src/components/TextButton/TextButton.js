@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, Platform, Text, TouchableOpacity } from 'react-native';
 import { iOSDefaultButtonColor } from 'constants/colors';
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   textButton: {
     textAlign: 'center',
     fontSize: 16,
@@ -14,7 +14,7 @@ const style = StyleSheet.create({
 class TextButton extends React.PureComponent {
   render() {
     const textButtonStyle = StyleSheet.flatten([
-      style.textButton,
+      styles.textButton,
       {
         color: this.props.color,
         textDecorationLine: this.props.underlined ? 'underline' : 'none'

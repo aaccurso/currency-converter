@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import AmountInput from 'components/AmountInput';
 import CurrencySelector from 'components/CurrencySelector';
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   moneyInput: {
     flex: 1,
     maxHeight: 50,
@@ -19,7 +19,7 @@ const style = StyleSheet.create({
 class MoneyInput extends React.Component {
   render() {
     return (
-      <View style={style.moneyInput}>
+      <View style={styles.moneyInput}>
         <CurrencySelector {...this.props}/>
         <AmountInput {...this.props}/>
       </View>

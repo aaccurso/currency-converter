@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     width: 250,
@@ -13,7 +13,7 @@ const style = StyleSheet.create({
 class Title extends React.Component {
   render() {
     return (
-      <Text style={style.title}>
+      <Text style={styles.title}>
         {this.props.children}
       </Text>
     );

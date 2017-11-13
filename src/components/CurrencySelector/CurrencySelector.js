@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View, Modal, Button, FlatList } from 'react-native';
 import TextButton from 'components/TextButton';
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   modalContainer: {
     marginTop: 20
   }
@@ -50,7 +50,7 @@ class CurrencySelector extends React.Component {
           visible={this.state.modalVisible}
           onRequestClose={this.closeModal}
         >
-          <View style={style.modalContainer}>
+          <View style={styles.modalContainer}>
             <TextButton
               color={'red'}
               title={'Close'}
