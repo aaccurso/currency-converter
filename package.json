@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "babel-eslint": "^8.0.2",
+        "babel-plugin-transform-remove-console": "^6.8.5",
         "eslint": "^4.11.0",
         "eslint-plugin-import": "^2.8.0",
         "eslint-plugin-jest": "^21.3.2",
